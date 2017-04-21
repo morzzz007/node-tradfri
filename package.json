@@ -1,6 +1,6 @@
 {
   "name": "node-tradfri",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Async Node Module To Control IKEA Tradfri Lights",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,8 @@
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-react": "6.10.3",
     "jest": "19.0.2"
+  },
+  "dependencies": {
+    "lodash": "4.17.4"
   }
 }

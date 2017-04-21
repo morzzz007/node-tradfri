@@ -1,19 +1,31 @@
-const key = 'xzy';
-const url = '0.0.0.0';
+const coap = require('./lib/coap');
+const mapDevice = require('./lib/mapdevice');
 
-const exec = require('child_process').exec;
+class Tradfri {
+  constructor(key, url) {
+    this.key = key;
+    this.url = url;
+  }
 
-const coapCall = () => new Promise((resolve) => {
-  exec(`./coap-client -m get -u "Client_identity" -k "${key}" "coaps://${url}:5684/15001"`, (err, stdOut) => {
-    resolve(JSON.parse(stdOut.split('\n')[3]));
-  });
-});
+  getDeviceIds() {
+    return coap(this.key, this.url);
+  }
 
-const start = async () => {
-  const result = await coapCall();
-  console.log('start', result);
-};
+  async getDevices() {
+    const devices = await this.getDeviceIds();
 
-start().then((response) => {
-  console.log(response, 'end');
-});
+    const result = [];
+    for (let deviceId of devices) {
+      const device = await coap(this.key, this.url, deviceId);
+      result.push(mapDevice(device));
+    }
+
+    return result;
+  }
+
+  static create(key, url) {
+    return new Tradfri(key, url);
+  }
+}
+
+module.exports = Tradfri;
