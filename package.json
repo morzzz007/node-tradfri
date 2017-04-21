@@ -4,7 +4,7 @@
   "description": "Async Node Module To Control IKEA Tradfri Lights",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "ikea",
@@ -17,6 +17,7 @@
     "eslint-config-airbnb": "14.1.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
-    "eslint-plugin-react": "6.10.3"
+    "eslint-plugin-react": "6.10.3",
+    "jest": "19.0.2"
   }
 }
