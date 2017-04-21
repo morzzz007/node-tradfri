@@ -1,0 +1,22 @@
+{
+  "name": "node-tradfri",
+  "version": "0.0.1",
+  "description": "Async Node Module To Control IKEA Tradfri Lights",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ikea",
+    "tradfri"
+  ],
+  "author": "Marton Papp <morz@morz.hu> (http://morz.hu)",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.10.3"
+  }
+}
