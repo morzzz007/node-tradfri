@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- '7'
+deploy:
+  provider: npm
+  email: morz@morz.hu
+  api_key:
+    secure: gY2vrZl1Y0uzYFiNFjyULNbS6Ab5cMlr8nte8Oc/e21KUcZIrjP1Ptbd0u251F2X867zWoDj6H8X8XUHqcm4RQf4HxPMpN2/J52Qx1mz3PT2toYedr1UF9AyapFYXWaB2DiX61Sa+R79WR8puRdCs4Gm/70kHwjtPDjdCbt/WKYm+O1DwoDBxa1gZlfSuKN0yYScChf2DunKCaz97Yaq400S2+2KfOYJnMr/8HNSw9S0e0eLNuYZAu3NjQ+0KKCOZ2hakx5/jKq5YNYKVq5GLRQ97k4coi4ONIO5MJKIdIcRPjtiTg/C2Yb6McHeNccls5zBMNDKs7NwmY//yDhmhuJ+9uUJYfCOyGdVcMzqvqYEsBZXV1Clyr8Qe5qLG4TcXrJ9dKPUDG+y5JyQIrQSMTr1ip575NrZqXuRl53PYYU1CqI2wq0SIO3Z6eNjmeTsZc//2pccxiJFLHtwoni3yLAWgjRE7PoapOXAYhyHdCreqYRcc/tpNZSINaBICO3hHesioO1kwH8YfhnhfPyHd+VytbzkF0SmHUj3fIQ84NzWXZEWnoo0ZWQ+qpr9aZc9qrMUTTdoMYFRF163iuf9XvQ/FlB03vfAKOzDk7x+0I3zjs9N6B4Yrwl/jr6MYwA+OuVrFIvKIZSdeEk+EDrTmEyc+jP/5lYuKjNbKOWYQk4=
+  on:
+    tags: true
+    repo: morzzz007/node-tradfri
