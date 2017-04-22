@@ -91,7 +91,7 @@ Response:
 Returns an array with every device connected to the hub.
 
 Example:
-```
+```javascript
 [ { id: 65536,
     name: 'TRADFRI remote control',
     type: 'TRADFRI remote control',
