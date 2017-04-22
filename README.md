@@ -1,6 +1,7 @@
 
-# Node Tradfri API ![img](http://i.imgur.com/Qicn5wu.jpg)
-Node API to control **IKEA Tradfri** Lights.
+# Node Tradfri API ![img](http://i.imgur.com/Qicn5wu.jpg) [![Build Status](https://travis-ci.org/morzzz007/node-tradfri.svg?branch=master)](https://travis-ci.org/morzzz007/node-tradfri)
+Node API to control **IKEA Tradfri (Trådfri)** Lights.
+Currently supports Node versions **7.6+** only
 
 
 ## Installation
