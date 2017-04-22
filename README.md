@@ -1,5 +1,7 @@
-# Node Tradfri API
+
+# Node Tradfri API ![img](http://i.imgur.com/Qicn5wu.jpg)
 Node API to control **IKEA Tradfri** Lights.
+
 
 ## Installation
 
