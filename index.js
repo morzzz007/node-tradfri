@@ -1,3 +1,4 @@
+const isUndefined  = require('lodash/isundefined');
 const coapClient = require('./lib/coap-client.js');
 const mapDevice = require('./lib/mapdevice');
 const mapGroup = require('./lib/mapgroup');
@@ -47,6 +48,30 @@ class Tradfri {
 
 
     return result;
+  }
+
+  turnOnDevice(deviceId) {
+    return this.coapClient.operate(deviceId, 'turn-on');
+  }
+
+  turnOffDevice(deviceId) {
+    return this.coapClient.operate(deviceId, 'turn-off');
+  }
+
+  async toggleDevice(deviceId, state) {
+    const device = mapDevice(await this.coapClient.getDevices(deviceId));
+    if (isUndefined(state)) {
+      if (device.on) {
+        return this.turnOffDevice(deviceId);
+      }
+      return this.turnOnDevice(deviceId);
+    }
+
+    if (state) {
+      return this.turnOnDevice(deviceId);
+    }
+
+    return this.turnOffDevice(deviceId);
   }
 
   static create(config) {

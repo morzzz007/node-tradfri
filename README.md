@@ -87,6 +87,24 @@ Response:
     on: false } ]
 ```
 
+### turnOnDevice(`<deviceId>`)
+|Parameters|type|values|
+|---|---|---|
+|`deviceId`|required|int/string|
+
+### turnOffDevice(`<deviceId>`)
+|Parameters|type|values|
+|---|---|---|
+|`deviceId`|required|int/string|
+
+
+### toggleDevice(`<deviceId>`, `<state>`)
+|Parameters|type|values|
+|---|---|---|
+|`deviceId`|required|int/string|
+|`state`|optional|boolean|
+
+
 # How to build CoAP client
 ## OsX prerequisites
 ```shell
