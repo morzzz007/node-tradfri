@@ -4,11 +4,16 @@ Node API to control IKEA Tradfri Lights
 
 # Installation
 
-`npm i node-tradfri --save`
+`npm install node-tradfri --save`
 
 # Usage
-```
-  const tradfri = require('node-tradfri').create('<security_id>', '<hub_ip_address>');
+```javascript
+  const tradfri = require('node-tradfri').create({
+    coapClientPath: './lib/coap-client', // use embedded coap-client
+    securityId: '<security_id>',
+    hubIpAddress: '<hub_ip_address>'
+  });
+
   const devices = await tradfri.getDevices();
 ```
 

@@ -1,30 +1,29 @@
-const coap = require('./lib/coap');
+const coapClient = require('./lib/coap-client.js');
 const mapDevice = require('./lib/mapdevice');
 
 class Tradfri {
-  constructor(key, url) {
-    this.key = key;
-    this.url = url;
+  constructor(config) {
+    this.coapClient = coapClient.create(config);
   }
 
   getDeviceIds() {
-    return coap(this.key, this.url);
+    return this.coapClient.get();
   }
 
   async getDevices() {
     const devices = await this.getDeviceIds();
-
     const result = [];
+
     for (let deviceId of devices) {
-      const device = await coap(this.key, this.url, deviceId);
+      const device = await this.coapClient.get(deviceId);
       result.push(mapDevice(device));
     }
 
     return result;
   }
 
-  static create(key, url) {
-    return new Tradfri(key, url);
+  static create(config) {
+    return new Tradfri(config);
   }
 }
 
