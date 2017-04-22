@@ -23,14 +23,66 @@ For more information on building a CoAP client [see this section.](#how-to-build
 ```
 
 # API
-## getDevices() - async/promise
+## Basics
+Every exposed method is asynchronous and returns a promise.
+
+You can use async/await:
+```javascript
+  const deviceIds = await tradfri.getDeviceIds();
+```
+
+Or the typical promises approach:
+```javascript
+  tradfri.getDeviceIds().then(deviceIds => {
+    // do something
+  });
+```
+
+## Methods
+### getDeviceIds()
+Returns device id's.
+
+Response:
+```javascript
+  [65536, 65537, 65538]
+```
+
+### getDevices()
 Returns an array with every device connected to the hub.
 
 Example:
 ```
-[ { id: 65536, name: 'TRADFRI remote control', on: false },
-  { id: 65537, name: 'TRADFRI bulb E27 WS opal 980lm', on: true },
-  { id: 65538, name: 'TRADFRI bulb E27 WS opal 980lm', on: true } ]
+[ { id: 65536,
+    name: 'TRADFRI remote control',
+    type: 'TRADFRI remote control',
+    on: false },
+  { id: 65537,
+    name: 'TRADFRI bulb E27 WS opal 980lm',
+    type: 'TRADFRI bulb E27 WS opal 980lm',
+    on: false },
+  { id: 65538,
+    name: 'TRADFRI bulb E27 WS opal 980lm 2',
+    type: 'TRADFRI bulb E27 WS opal 980lm',
+    on: false } ]
+```
+
+### getGroupIds()
+Returns group id's.
+
+Response:
+```javascript
+  [150429]
+```
+
+### getGroups()
+Returns an array of groups with the devices in it.
+
+Response:
+```javascript
+[ { id: 150429,
+    name: 'Kitchen',
+    devices: [ [Object], [Object], [Object] ],
+    on: false } ]
 ```
 
 # How to build CoAP client
