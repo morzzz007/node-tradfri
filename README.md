@@ -1,12 +1,17 @@
 # Node Tradfri API
+Node API to control **IKEA Tradfri** Lights.
 
-Node API to control IKEA Tradfri Lights
-
-# Installation
+## Installation
 
 `npm install node-tradfri --save`
 
-# Usage
+## CoAP
+
+This library uses [libcoap](https://github.com/obgm/libcoap) with tinydtls to send CoAP requests.
+Prebuilt OsX client is included or you can build your own and set the `coapClientPath` config setting to point to your library.
+For more information on building a CoAP client [see this section.](#how-to-build-coap-client)
+
+## Usage
 ```javascript
   const tradfri = require('node-tradfri').create({
     coapClientPath: './lib/coap-client', // use embedded coap-client
@@ -28,3 +33,28 @@ Example:
   { id: 65538, name: 'TRADFRI bulb E27 WS opal 980lm', on: true } ]
 ```
 
+# How to build CoAP client
+## OsX prerequisites
+```shell
+brew install libtool
+brew install automake
+brew install autoconf
+```
+
+### Build
+```shell
+git clone https://github.com/obgm/libcoap.git
+cd libcoap
+git checkout origin/dtls
+git checkout -b dtls
+git submodule update --init ext/tinydtls
+cd ext/tinydtls
+autoreconf
+./configure
+cd ../../
+./autogen.sh
+./configure --disable-shared --disable-documentation
+make
+```
+
+Now you can find the coap-client in the `/examples` directory
