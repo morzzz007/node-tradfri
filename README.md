@@ -22,6 +22,14 @@ For more information on building a CoAP client [see this section.](#how-to-build
   });
 
   const devices = await tradfri.getDevices();
+
+  // or
+
+  await tradfri.setDeviceState(65537, {
+    state: 'on',
+    color: 'ffffff',
+    brightness: 255
+  });
 ```
 
 # API
@@ -41,6 +49,35 @@ Or the typical promises approach:
 ```
 
 ## Methods
+
+### setDeviceState(`<deviceId>`, `<newState>`)
+
+#### Examples
+Turn device on:
+```javascript
+await tradfri.setDeviceState(65537, { state: 'on' });
+```
+
+Combine settings, turn on and set brightness:
+```javascript
+await tradfri.setDeviceState(65537, { state: 'on', brightness: 255 });
+```
+
+#### Usage
+
+|Parameters|type|values|
+|---|---|---|
+|`deviceId`|required|int/string|
+|`newState`|required|object|
+
+In newState you can combine the following values:
+
+|Parameters|values|action|
+|---|---|---|
+|`state`|boolean/string ('on', 'off')|Toggle light on/off
+|`color`|string (hex color value, ex: 'efd275')|Sets color
+|`brightness`|number/string (0-255)|Sets brightness
+
 ### getDeviceIds()
 Returns device id's.
 
