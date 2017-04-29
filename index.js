@@ -1,4 +1,4 @@
-const isUndefined = require('lodash/isundefined');
+const isUndefined = require('lodash/isUndefined');
 const coapClient = require('./lib/coap-client.js');
 const mapDevice = require('./lib/mapdevice');
 const mapGroup = require('./lib/mapgroup');
