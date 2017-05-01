@@ -1,7 +1,6 @@
 const isUndefined = require('lodash/isUndefined');
 const coapClient = require('./lib/coap-client.js');
-const mapDevice = require('./lib/mapdevice');
-const mapGroup = require('./lib/mapgroup');
+const { transformRawDeviceData, transformRawGroupData } = require('./lib/data-transfomers');
 
 class Tradfri {
   constructor(config) {
@@ -22,7 +21,7 @@ class Tradfri {
 
     for (let deviceId of devices) {
       const device = await this.coapClient.getDevices(deviceId);
-      result.push(mapDevice(device));
+      result.push(transformRawDeviceData(device));
     }
 
     return result;
@@ -34,18 +33,17 @@ class Tradfri {
 
     for (let groupId of groups) {
       const group = await this.coapClient.getGroups(groupId);
-      const mappedData = mapGroup(group);
+      const mappedData = transformRawGroupData(group);
 
       const devicesInGroup = [];
       for (let deviceId of mappedData.devices) {
         const deviceData = await this.coapClient.getDevices(deviceId);
-        devicesInGroup.push(mapDevice(deviceData));
+        devicesInGroup.push(transformRawDeviceData(deviceData));
       }
 
       mappedData.devices = devicesInGroup;
       result.push(mappedData);
     }
-
 
     return result;
   }
@@ -59,7 +57,7 @@ class Tradfri {
   }
 
   async toggleDevice(deviceId, state) {
-    const device = mapDevice(await this.coapClient.getDevices(deviceId));
+    const device = transformRawDeviceData(await this.coapClient.getDevices(deviceId));
     if (isUndefined(state)) {
       if (device.on) {
         return this.turnOffDevice(deviceId);
