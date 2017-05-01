@@ -4,18 +4,24 @@
   "description": "Async Node Module To Control IKEA Tradfri Lights",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "keywords": [
     "ikea",
     "tradfri"
   ],
+  "jest": {
+    "collectCoverage": false,
+    "collectCoverageFrom" : ["**/*.{js,jsx}", "!**/node_modules/**", "!**/coverage/**", "!**/vendor/**"]
+  },
   "author": "Marton Papp <morz@morz.hu> (http://morz.hu)",
   "license": "ISC",
   "devDependencies": {
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
     "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jest": "19.0.1",
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-react": "6.10.3",
     "jest": "19.0.2"
