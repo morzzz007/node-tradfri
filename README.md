@@ -49,7 +49,61 @@ Or the typical promises approach:
   });
 ```
 
-## Methods
+## Public API List
+|Devices|Groups|
+|---|---|
+|getDeviceIds()|getGroupIds()|
+|getDevices()|getGroups()|
+|turnOnDevice()|turnOnGroup()|
+|turnOffDevice()|turnOffGroup()|
+|toggleDevice()|toggleGroup()|
+|setDeviceState()|setGroupState()|
+
+## Methods for working indivudial devices/bulbs (for groups [see this section](#methods-for-working-with-groups))
+
+### getDeviceIds()
+Returns device id's.
+
+Response:
+```javascript
+  [65536, 65537, 65538]
+```
+
+### getDevices()
+Returns an array with every device connected to the hub.
+
+Example:
+```javascript
+[ { id: 65536,
+    name: 'TRADFRI remote control',
+    type: 'TRADFRI remote control',
+    on: false },
+  { id: 65537,
+    name: 'TRADFRI bulb E27 WS opal 980lm',
+    type: 'TRADFRI bulb E27 WS opal 980lm',
+    on: false },
+  { id: 65538,
+    name: 'TRADFRI bulb E27 WS opal 980lm 2',
+    type: 'TRADFRI bulb E27 WS opal 980lm',
+    on: false } ]
+```
+
+### turnOnDevice(`<deviceId>`)
+|Parameters|type|values|
+|---|---|---|
+|`deviceId`|required|int/string|
+
+### turnOffDevice(`<deviceId>`)
+|Parameters|type|values|
+|---|---|---|
+|`deviceId`|required|int/string|
+
+
+### toggleDevice(`<deviceId>`, `<state>`)
+|Parameters|type|values|
+|---|---|---|
+|`deviceId`|required|int/string|
+|`state`|optional|boolean|
 
 ### setDeviceState(`<deviceId>`, `<newState>`)
 
@@ -79,32 +133,7 @@ In newState you can combine the following values:
 |`color`|string (hex color value, ex: 'efd275')|Sets color
 |`brightness`|number/string (0-255)|Sets brightness
 
-### getDeviceIds()
-Returns device id's.
-
-Response:
-```javascript
-  [65536, 65537, 65538]
-```
-
-### getDevices()
-Returns an array with every device connected to the hub.
-
-Example:
-```javascript
-[ { id: 65536,
-    name: 'TRADFRI remote control',
-    type: 'TRADFRI remote control',
-    on: false },
-  { id: 65537,
-    name: 'TRADFRI bulb E27 WS opal 980lm',
-    type: 'TRADFRI bulb E27 WS opal 980lm',
-    on: false },
-  { id: 65538,
-    name: 'TRADFRI bulb E27 WS opal 980lm 2',
-    type: 'TRADFRI bulb E27 WS opal 980lm',
-    on: false } ]
-```
+## Methods for working with groups
 
 ### getGroupIds()
 Returns group id's.
@@ -125,22 +154,50 @@ Response:
     on: false } ]
 ```
 
-### turnOnDevice(`<deviceId>`)
+### turnOnGroup(`<groupId>`)
 |Parameters|type|values|
 |---|---|---|
-|`deviceId`|required|int/string|
+|`groupId`|required|int/string|
 
-### turnOffDevice(`<deviceId>`)
+### turnOffGroup(`<groupId>`)
 |Parameters|type|values|
 |---|---|---|
-|`deviceId`|required|int/string|
+|`groupId`|required|int/string|
 
 
-### toggleDevice(`<deviceId>`, `<state>`)
+### toggleGroup(`<groupId>`, `<state>`)
 |Parameters|type|values|
 |---|---|---|
-|`deviceId`|required|int/string|
+|`groupId`|required|int/string|
 |`state`|optional|boolean|
+
+### setGroupState(`<groupId>`, `<newState>`)
+
+#### Examples
+Turn group on:
+```javascript
+await tradfri.setGroupState(150429, { state: 'on' });
+```
+
+Combine settings, turn on and set brightness:
+```javascript
+await tradfri.setGroupState(150429, { state: 'on', brightness: 255 });
+```
+
+#### Usage
+
+|Parameters|type|values|
+|---|---|---|
+|`groupId`|required|int/string|
+|`newState`|required|object|
+
+In newState you can combine the following values:
+
+|Parameters|values|action|
+|---|---|---|
+|`state`|boolean/string ('on', 'off')|Toggle light on/off
+|`color`|string (hex color value, ex: 'efd275')|Sets color
+|`brightness`|number/string (0-255)|Sets brightness
 
 
 # How to build CoAP client

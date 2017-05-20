@@ -49,11 +49,11 @@ class Tradfri {
   }
 
   turnOnDevice(deviceId) {
-    return this.coapClient.operate(deviceId, { state: 'on' });
+    return this.coapClient.operate('device', deviceId, { state: 'on' });
   }
 
   turnOffDevice(deviceId) {
-    return this.coapClient.operate(deviceId, { state: 'off' });
+    return this.coapClient.operate('device', deviceId, { state: 'off' });
   }
 
   async toggleDevice(deviceId, state) {
@@ -73,7 +73,36 @@ class Tradfri {
   }
 
   setDeviceState(deviceId, properties) {
-    return this.coapClient.operate(deviceId, properties);
+    return this.coapClient.operate('device', deviceId, properties);
+  }
+
+  turnOnGroup(groupId) {
+    return this.coapClient.operate('group', groupId, { state: 'on' });
+  }
+
+  turnOffGroup(groupId) {
+    return this.coapClient.operate('group', groupId, { state: 'off' });
+  }
+
+  async toggleGroup(groupId, state) {
+    const group = transformRawGroupData(await this.coapClient.getGroups(groupId));
+
+    if (isUndefined(state)) {
+      if (group.on) {
+        return this.turnOffGroup(groupId);
+      }
+      return this.turnOnGroup(groupId);
+    }
+
+    if (state) {
+      return this.turnOnGroup(groupId);
+    }
+
+    return this.turnOffGroup(groupId);
+  }
+
+  setGroupState(groupId, properties) {
+    return this.coapClient.operate('group', groupId, properties);
   }
 
   static create(config) {
