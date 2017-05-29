@@ -74,18 +74,18 @@ Returns an array with every device connected to the hub.
 
 Example:
 ```javascript
-[ { id: 65536,
-    name: 'TRADFRI remote control',
-    type: 'TRADFRI remote control',
-    on: false },
-  { id: 65537,
-    name: 'TRADFRI bulb E27 WS opal 980lm',
-    type: 'TRADFRI bulb E27 WS opal 980lm',
-    on: false },
-  { id: 65538,
-    name: 'TRADFRI bulb E27 WS opal 980lm 2',
-    type: 'TRADFRI bulb E27 WS opal 980lm',
-    on: false } ]
+[ { id: 65540,
+    name: 'Ceiling 2',
+    type: 'TRADFRI bulb E14 WS opal 400lm',
+    on: true,
+    color: 'efd275',
+    brightness: 254 },
+  { id: 65539,
+    name: 'Ceiling 1',
+    type: 'TRADFRI bulb E14 WS opal 400lm',
+    on: true,
+    color: 'efd275',
+    brightness: 254 } ]
 ```
 
 ### turnOnDevice(`<deviceId>`)
