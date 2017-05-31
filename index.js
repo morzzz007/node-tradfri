@@ -1,3 +1,5 @@
+/* eslint-disable no-await-in-loop */
+
 const isUndefined = require('lodash/isUndefined');
 const coapClient = require('./lib/coap-client.js');
 const { transformRawDeviceData, transformRawGroupData } = require('./lib/data-transfomers');
