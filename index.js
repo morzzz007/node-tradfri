@@ -9,6 +9,10 @@ class Tradfri {
     this.coapClient = coapClient.create(config);
   }
 
+  connect() {
+    return this.coapClient.connect();
+  }
+
   getDeviceIds() {
     return this.coapClient.getDevices();
   }
