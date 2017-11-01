@@ -22,6 +22,8 @@ For more information on building a CoAP client [see this section.](#how-to-build
     hubIpAddress: '<hub_ip_address>'
   });
 
+  await tradfri.connect();
+
   const devices = await tradfri.getDevices();
 
   // or
@@ -59,7 +61,7 @@ Or the typical promises approach:
 |toggleDevice()|toggleGroup()|
 |setDeviceState()|setGroupState()|
 
-## Methods for working indivudial devices/bulbs (for groups [see this section](#methods-for-working-with-groups))
+## Methods for working with indivudial devices/bulbs (for groups [see this section](#methods-for-working-with-groups))
 
 ### getDeviceIds()
 Returns device id's.

@@ -1,6 +1,6 @@
 {
   "name": "node-tradfri",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Async Node Module To Control IKEA Tradfri Lights",
   "main": "index.js",
   "scripts": {
