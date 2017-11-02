@@ -1,5 +1,5 @@
 
-# Node Tradfri API ![img](http://i.imgur.com/Qicn5wu.jpg) [![Build Status](https://travis-ci.org/morzzz007/node-tradfri.svg?branch=master)](https://travis-ci.org/morzzz007/node-tradfri) [![npm version](https://badge.fury.io/js/node-tradfri.svg)](https://badge.fury.io/js/node-tradfri) [![npm](https://img.shields.io/npm/dm/node-tradfri.svg)]()
+# Node TRÅDFRI API ![img](http://i.imgur.com/Qicn5wu.jpg) [![Build Status](https://travis-ci.org/morzzz007/node-tradfri.svg?branch=master)](https://travis-ci.org/morzzz007/node-tradfri) [![npm version](https://badge.fury.io/js/node-tradfri.svg)](https://badge.fury.io/js/node-tradfri) [![npm](https://img.shields.io/npm/dm/node-tradfri.svg)]()
 Node API to control **IKEA Tradfri (Trådfri)** Lights.
 Currently supports Node versions **7.6+** only!
 
@@ -14,15 +14,30 @@ This library uses [libcoap](https://github.com/obgm/libcoap) with tinydtls to se
 Prebuilt OsX client is included or you can build your own and set the `coapClientPath` config setting to point to your library.
 For more information on building a CoAP client [see this section.](#how-to-build-coap-client)
 
+## First steps
+1. Obtain the TRÅDFRI Gateway's IP address and Security Code (found at the bottom of the gateway)
+2. Generate a DTLS `IDENTITY` and a `PRE_SHARED_KEY`
+
+## How to generate a DTLS Identity
+### Use the included script
+`node node_modules/node_tradfri/dtls.js HUB_IP_ADDRESS SECURITY_CODE (COAP_CLIENT_PATH [optional])`
+
+Example:
+`node node_modules/node_tradfri/dtls.js 192.168.0.33 ABCDEFGHIJKLM`
+
+### Manually
+```
+coap-client -m post -u "Client_identity" -k "SECURITY_CODE" -e '{"9090":"IDENTITY"}' "coaps://IP_ADDRESS:5684/15011/9063"
+```
+
 ## Usage
 ```javascript
   const tradfri = require('node-tradfri').create({
     coapClientPath: './lib/coap-client', // use embedded coap-client
-    securityId: '<security_id>',
+    identity: '<identity>',
+    preSharedKey: '<pre_shared_key>',
     hubIpAddress: '<hub_ip_address>'
   });
-
-  await tradfri.connect();
 
   const devices = await tradfri.getDevices();
 
