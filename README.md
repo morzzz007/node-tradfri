@@ -20,10 +20,10 @@ For more information on building a CoAP client [see this section.](#how-to-build
 
 ## How to generate a DTLS Identity
 ### Use the included script
-`node node_modules/node_tradfri/dtls.js HUB_IP_ADDRESS SECURITY_CODE (COAP_CLIENT_PATH [optional])`
+`node node_modules/node-tradfri/dtls.js HUB_IP_ADDRESS SECURITY_CODE (COAP_CLIENT_PATH [optional])`
 
 Example:
-`node node_modules/node_tradfri/dtls.js 192.168.0.33 ABCDEFGHIJKLM`
+`node node_modules/node-tradfri/dtls.js 192.168.0.33 ABCDEFGHIJKLM`
 
 ### Manually
 ```
