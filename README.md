@@ -19,6 +19,9 @@ For more information on building a CoAP client [see this section.](#how-to-build
 2. Generate a DTLS `IDENTITY` and a `PRE_SHARED_KEY`
 
 ## How to generate a DTLS Identity
+
+> The identities will expire after 6 weeks without any usage. Each time you use it the expiration will be moved in time. That means that you should not need to think about renewals of the identities as long as it is used continuously.
+
 ### Use the included script
 `node node_modules/node-tradfri/dtls.js HUB_IP_ADDRESS SECURITY_CODE (COAP_CLIENT_PATH [optional])`
 
