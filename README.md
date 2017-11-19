@@ -12,7 +12,7 @@ Currently supports Node versions **7.6+** only!
 
 This library uses [libcoap](https://github.com/obgm/libcoap) with tinydtls to send CoAP requests.
 Prebuilt OsX client is included or you can build your own and set the `coapClientPath` config setting to point to your library.
-For more information on building a CoAP client [see this section.](#how-to-build-coap-client)
+For more information on building a CoAP client for Raspibian or macOS [see this section.](#how-to-build-coap-client)
 
 ## First steps
 1. Obtain the TRÅDFRI Gateway's IP address and Security Code (found at the bottom of the gateway)
@@ -221,7 +221,8 @@ In newState you can combine the following values:
 
 
 # How to build CoAP client
-## OsX prerequisites
+## OsX 
+### Prerequisites
 ```shell
 brew install libtool
 brew install automake
@@ -244,4 +245,26 @@ cd ../../
 make
 ```
 
-Now you can find the coap-client in the `/examples` directory
+Now you can find the `coap-client` in the `/examples` directory
+
+## Raspibian (Raspberry Pi)
+### Prerequisites
+```shell
+sudo apt-get install autoconf automake libtool
+```
+### Build
+```shell
+git clone https://github.com/obgm/libcoap.git
+cd libcoap
+git checkout origin/dtls
+git checkout -b dtls
+git submodule update --init ext/tinydtls
+cd ext/tinydtls
+autoreconf
+cd ../../
+./autogen.sh
+./configure --disable-shared --disable-documentation
+make
+```
+
+Now you can find the `coap-client` in the `/examples` directory
