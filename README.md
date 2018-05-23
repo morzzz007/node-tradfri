@@ -152,6 +152,7 @@ In newState you can combine the following values:
 |`state`|boolean/string ('on', 'off')|Toggle light on/off
 |`color`|string (hex color value, ex: 'efd275')|Sets color
 |`brightness`|number/string (0-255)|Sets brightness
+|`colorX, colorY`|number|Sets color [(how to use)](https://github.com/morzzz007/node-tradfri/pull/13)
 |`transitionTime`|number|Sets the trainsition time
 
 ## Methods for working with groups
